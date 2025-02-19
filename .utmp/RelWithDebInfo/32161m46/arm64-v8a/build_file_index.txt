@@ -1,0 +1,2 @@
+E:\Dimitris\Unity\Unity_Projects\2D_Projects\Roll_a_ball\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+E:\Dimitris\Unity\Unity_Projects\2D_Projects\Roll_a_ball\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

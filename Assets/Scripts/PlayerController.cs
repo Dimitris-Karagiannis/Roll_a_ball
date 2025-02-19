@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour
     private float movement_x;
     private float movement_y;
     private int count;
+    private Vector3 tilt;
 
-    public float speed = 0;
+    public float speed = 10f;
     public TextMeshProUGUI count_text;
     public TextMeshProUGUI win_text_object;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +23,9 @@ public class PlayerController : MonoBehaviour
 
         SetCountText();
         win_text_object.gameObject.SetActive(false);
+
+        if (SystemInfo.supportsGyroscope)
+            Input.gyro.enabled = true;
     }
 
     void OnMove(InputValue movement_value)
@@ -41,10 +46,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        Vector3 acceleration = Input.acceleration;
+        Vector3 gyroRotation = SystemInfo.supportsGyroscope ? Input.gyro.rotationRateUnbiased : Vector3.zero;
+
+        // Combine both accelerometer and gyroscope data
+        tilt = new Vector3(acceleration.x + gyroRotation.x, 0, acceleration.y + gyroRotation.y);
+    }
+
     void FixedUpdate()
     {
-        Vector3 movement = new Vector3(movement_x, 0.0f, movement_y);
-        rb.AddForce(movement * speed);
+        rb.AddForce(tilt * speed);
     }
 
     void OnTriggerEnter(Collider other)
