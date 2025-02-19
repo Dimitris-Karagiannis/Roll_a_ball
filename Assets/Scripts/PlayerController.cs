@@ -48,11 +48,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        Vector3 acceleration = Input.acceleration;
+       // Vector3 acceleration = Input.acceleration;
         Vector3 gyroRotation = SystemInfo.supportsGyroscope ? Input.gyro.rotationRateUnbiased : Vector3.zero;
 
         // Combine both accelerometer and gyroscope data
-        tilt = new Vector3(acceleration.x + gyroRotation.x, 0, acceleration.y + gyroRotation.y);
+        // tilt = new Vector3(acceleration.x + gyroRotation.x, 0, acceleration.y + gyroRotation.y);
+
+        // Only gyroscope data
+        tilt = new Vector3(gyroRotation.y, 0, -gyroRotation.x);
     }
 
     void FixedUpdate()
