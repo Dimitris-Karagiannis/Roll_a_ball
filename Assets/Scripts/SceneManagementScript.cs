@@ -9,6 +9,8 @@ public class SceneManagementScript : MonoBehaviour
     public GameObject settings_canvas;
     public GameObject main_menu_canvas;
 
+    public SettingsScript settingsScript;
+
     private void LoadScene(string scene_name)
     {
         SceneManager.LoadScene(scene_name);
@@ -20,7 +22,7 @@ public class SceneManagementScript : MonoBehaviour
 
     public void ApplyChanges()
     {
-
+        settingsScript.SaveChanges();
 
         settings_canvas.gameObject.SetActive(false);
         main_menu_canvas.gameObject.SetActive(true);

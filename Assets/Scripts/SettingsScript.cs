@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // Import TextMeshPro for TMP_Dropdown
+using TMPro;
 
 public class SettingsScript : MonoBehaviour
 {
@@ -24,6 +24,13 @@ public class SettingsScript : MonoBehaviour
         // Add listener for dropdown selection
         controlDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
 
+        // Load stored values
+        accelerometer_speed_value = PlayerPrefs.GetFloat("AccelerometerSpeed", 5f);
+        gyroscope_speed_value = PlayerPrefs.GetFloat("GyroscopeSpeed", 5f);
+
+        accelerometer_slider.value = accelerometer_speed_value;
+        gyroscope_slider.value = gyroscope_speed_value;
+
         // Ensure a valid option is selected at start
         OnDropdownValueChanged(controlDropdown.value);
     }
@@ -34,10 +41,12 @@ public class SettingsScript : MonoBehaviour
         if (index == 0)
         {
             ActivateAccelerometerOnly();
+            PlayerPrefs.SetInt("ControlMode", 0); // Save accelerometer control mode
         }
         else if (index == 1)
         {
             ActivateGyroscopeOnly();
+            PlayerPrefs.SetInt("ControlMode", 1); // Save gyroscope control mode
         }
     }
 
@@ -57,6 +66,17 @@ public class SettingsScript : MonoBehaviour
     {
         speedValue = value; // Store the speed value
         speedText.text = value.ToString("0.00"); // Update UI text
+
+        // Save to PlayerPrefs
+        if (speedText == accelerometer_speed_value_text)
+            PlayerPrefs.SetFloat("AccelerometerSpeed", value);
+        else if (speedText == gyroscope_speed_value_text)
+            PlayerPrefs.SetFloat("GyroscopeSpeed", value);
+
+    }
+
+    public void SaveChanges()
+    {
+        PlayerPrefs.Save(); // Make sure changes are saved
     }
 }
-

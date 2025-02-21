@@ -1018,6 +1018,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings_canvas: {fileID: 64914618}
   main_menu_canvas: {fileID: 40618990}
+  settingsScript: {fileID: 1531101491}
 --- !u!4 &387136501
 Transform:
   m_ObjectHideFlags: 0
@@ -2399,6 +2400,8 @@ MonoBehaviour:
   controlDropdown: {fileID: 1628667245}
   accelerometer_speed_value_text: {fileID: 2146584413}
   gyroscope_speed_value_text: {fileID: 1361473106}
+  accelerometer_speed_value: 0
+  gyroscope_speed_value: 0
 --- !u!1 &1552507046
 GameObject:
   m_ObjectHideFlags: 0
