@@ -12,11 +12,14 @@ public class SettingsScript : MonoBehaviour
     public TextMeshProUGUI accelerometer_speed_value_text;
     public TextMeshProUGUI gyroscope_speed_value_text;
 
+    public float accelerometer_speed_value;
+    public float gyroscope_speed_value;
+
     void Start()
     {
-        // Add listeners to detect value change in sliders
-        accelerometer_slider.onValueChanged.AddListener(value => UpdateValueText(value, accelerometer_speed_value_text));
-        gyroscope_slider.onValueChanged.AddListener(value => UpdateValueText(value, gyroscope_speed_value_text));
+        // Add listeners to update speed values
+        accelerometer_slider.onValueChanged.AddListener(value => UpdateSpeedValue(value, ref accelerometer_speed_value, accelerometer_speed_value_text));
+        gyroscope_slider.onValueChanged.AddListener(value => UpdateSpeedValue(value, ref gyroscope_speed_value, gyroscope_speed_value_text));
 
         // Add listener for dropdown selection
         controlDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
@@ -50,9 +53,10 @@ public class SettingsScript : MonoBehaviour
         accelerometer_slider.gameObject.SetActive(true);
     }
 
-    public void UpdateValueText(float value, TextMeshProUGUI speed_text)
+    public void UpdateSpeedValue(float value, ref float speedValue, TextMeshProUGUI speedText)
     {
-        // Update the text to display the slider's value
-        speed_text.text = value.ToString("0.00");
+        speedValue = value; // Store the speed value
+        speedText.text = value.ToString("0.00"); // Update UI text
     }
 }
+

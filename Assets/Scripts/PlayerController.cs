@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     private int count;
     private Vector3 tilt;
 
-    public float speed = 10f;
+    public float accelerometer_speed = 5f;
+    public float gyroscope_speed = 5f;
+
     public TextMeshProUGUI count_text;
     public TextMeshProUGUI win_text_object;
 
@@ -63,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddForce(tilt * speed);
+        rb.AddForce(tilt * accelerometer_speed);
     }
 
     void OnTriggerEnter(Collider other)
