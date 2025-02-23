@@ -5,6 +5,7 @@ public class SceneManagementScript : MonoBehaviour
 {
 
     private static string main_scene_name = "MiniGame";
+    private static string main_menu_name = "MainMenu";
     
     public GameObject settings_canvas;
     public GameObject main_menu_canvas;
@@ -18,6 +19,11 @@ public class SceneManagementScript : MonoBehaviour
     public void LoadLevel()
     {
         LoadScene(main_scene_name);
+    }
+
+    public void LoadMenu()
+    {
+        LoadScene(main_menu_name);
     }
 
     public void ApplyChanges()
